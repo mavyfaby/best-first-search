@@ -58,245 +58,72 @@ permission of Maverick Fabroa <me@mavyfaby.me>.
 ### MavyGraphTraversal
 
 ```java
-MavyGraphTraversal()
+public MavyGraphTraversal()
 ```
 
-#### int addPlace
+### Methods
 
-```java
-public int addPlace(String place, double h)
-```
+#### public
 
-Add place to the list of places.
+- `int addPlace(String place, double h)` - Add place to the list of places.
+- `int addPlace(String place, String label, double h)` - Add place to the list of places with label.
+- `int connect(int v1, int v2, double weight)` - Connect 2 vertices with distance (Directed).
+- `int connect(int v1, int v2, double weight, boolean isUndirected)` - Connect 2 vertices with distance (with option to make it undirected).
+- `void GBFS(int startPlace, int goalPlace)` - Do a Greedy-Best First Search to the Graph.
+- `void Astar(int startPlace, int goalPlace)` - Do an A* search to the graph.
 
-Parameters:
- - `place` - name of the place
- - `h` - heuristic value
+### private
 
-Returns:
-- `0` if successful, `-1` if not
+- `LinkedList<Node> getPath(Node n)` - Get path based on the parent.
+- `Node getLowestF(LinkedList<Node> list)` -  Get the lowest f(n) value.
+- `Node getLowestF(LinkedList<Node> list, boolean willRemoveFromList)` - Get the lowest f(n) value and add an option to remove it in the list.
+- `void displayPath(LinkedList<Node> path)` - Display path.
+- `void displayLabelWithName(LinkedList<Node> path)` - Display every place's label with name.
+- `boolean isPlaceExist(String name)` - Check if place exist in the graph.
+- `boolean isPlaceExist(LinkedList<Node> list, String name)` - Check if place exist in the given list.
+- `boolean isOutOfRange(int index)` - Determine whether the given index is out of range.
 
-#### int addPlace
-
-```java
-public int addPlace(String place, String label, double h)
-```
-
-Add place to the list of places.
-
-Parameters:
-- `place` - name of the place
-- `label` - label of the place
-- `h` - heuristic value
-
-Returns:
-- `0` if successful, `-1` if not
-
-#### int connect
-
-```java
-public int connect(int v1, int v2, double weight)
-```
-
-Connect 2 vertices with distance (Directed)
-
-Parameters:
-- `v1` - place index 
-- `v2` - place index
-- `weight` - distance
-
-Returns:
-- `0` if successful, `-1` if not
-
-#### int connect
-
-```java
-public int connect(int v1, int v2, double weight, boolean isUndirected)
-```
-
-Connect 2 vertices with distance (Undirected)
-
-Parameters:
-- `v1` - place index
-- `v2` - place index
-- `weight` - distance
-- `isUndrected` - if connection is undirected
-
-Returns:
-- `0` if successful, `-1` if not
-
-#### void GBFS
-
-```java
-public void GBFS(int startPlace, int goalPlace)
-```
-
-Do a Greedy-Best First Search to the Graph
-
-Parameters:
-- `startPlace` - starting place
-- `goalPlace` - goal place
-
-### void Astar
-
-```java
-public void Astar(int startPlace, int goalPlace)
-```
-
-Do an A* search to the graph
-
-Parameters:
-- `startPlace` - starting place
-- `goalPlace` - goal place
 
 ### Node
 
 ```java
-Node(String name)
-Node(String name, String label) 
+public Node(String name)
+public Node(String name, String label) 
 ```
 
-#### int addNeighbor
+### Methods
 
-```java
-public int addNeighbor(Node n, double weight)
-```
+#### public
 
-Add neighbor to this node
+- `int addNeighbor(Node n, double weight)` - Add neighbor to this node.
+- `String getName()`
+- `double getF()`
+- `double getG()`
+- `double getH()`
+- `void setF(double f)`
+- `void setG(double g)`
+- `void setH(double h)`
+- `Node getParent()`
+- `void setParent(Node parent)`
+- `boolean isVisited()`
+- `void setVisited(boolean visited)`
+- `LinkedList<Edge> getNeighbors(boolean visited)` - Get node's neighbors.
+- `String getLabel()` - Get place label.
+- `boolean isNeighbor(Node n)` - Check if the node already exist in the list of neighbors.
 
-Parameters:
-- `n` - the node to be added to neighbors
-- `weight` - distance from this node to n
-
-Returns:
-- `0` if successful, `-1` if not
-
-#### String getName
-
-```java
-public String getName()
-```
-
-#### double getF
-
-```java
-public double getF()
-```
-
-#### double getG
-
-```java
-public double getG()
-```
-
-#### double getH
-
-```java
-public double getH()
-```
-
-#### void setF
-
-```java
-public void setF(double f)
-```
-
-#### void setG
-
-```java
-public void setG(double g)
-```
-
-#### void setH
-
-```java
-public void setH(double h)
-```
-
-#### Node getParent
-
-```java
-public double getParent()
-```
-
-#### void setParent
-
-```java
-public void setParent(Node parent)
-```
-
-#### boolean isVisited
-
-```java
-public boolean isVisited()
-```
-
-#### void setVisited
-
-```java
-public void setVisited(boolean visited)
-```
-
-#### LinkedList\<Edge\> getNeighbors
-
-```java
-public LinkedList<Edge> getNeighbors(boolean visited)
-```
-
-Get node's neighbors
-
-Returns:
-- list of places as nodes
-
-#### String getLabel
-
-```java
-public String getLabel()
-```
-
-Get place label
-
-Returns:
-- name if no label, otherwise return label
-
-#### boolean isNeighbor
-
-```java
-public boolean isNeighbor(Node n)
-```
-
-Check if the node already exist in the list of neighbors
-
-Parameters:
-- `n` - the node place
-
-
-Returns:
-- name if no label, otherwise return label
 
 ### Edge
 
 ```java
-Edge(Node n, double weight) 
+public Edge(Node n, double weight) 
+
 ```
 
-#### Node getNode
+### Methods
 
-```java
-public Node getNode()
-```
+- `Node getNode()`
+- `double getWeight()`
 
-Returns:
-- the node connected to this edge
-
-#### double getWeight
-
-```java
-public double getWeight()
-```
-
-Returns:
-- the weight of this edge
 
 ## LICENSE
 
