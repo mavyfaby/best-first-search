@@ -19,46 +19,49 @@ permission of Maverick Fabroa <me@mavyfaby.me>.
 
 ## Index
 
-- [API](#api)
-  - [MavyGraphTraversal](#mavygraphtraversal)
-    - [int addPlace(String, double)](#int-addplace)
-    - [int addPlace(String place, String label, double h)](#int-addplace)
-    - [int connect(int, int, double)](#int-connect)
-    - [int connect(int, int, double, boolean)](#int-connect)
-    - [void GBFS(int, int)](#void-gbfs)
-    - [void Astar(int, int)](#void-astar)
-  - [Node](#node)
-    - [int addNeighbor(Node, double)](#int-addneighbor)
-    - [String getName()](#string-getname)
-    - [double getF()](#double-getf)
-    - [double getG()](#double-getg)
-    - [double getH()](#double-geth)
-    - [void setF(double)](#void-setf)
-    - [void setG(double)](#void-setg)
-    - [void setH(double)](#void-seth)
-    - [Node getParent()](#node-getparent)
-    - [void setParent(Node)](#void-setparent)
-    - [boolean isVisited](#boolean-isvisited)
-    - [void setVisited(boolean)](#void-setvisited)
-    - [LinkedList\<Edge\> getNeighbors](#linkedlistedge-getneighbors)
-    - [boolean isNeighbor(Node)](#boolean-isneighbor)
-  - [Edge](#edge)
-    - [Node getNode()](#node-getnode)
-    - [double getWeight()](#double-getweight)
-- [License](#license)
+- [Best-First Search](#best-first-search)
+  - [Author](#author)
+  - [Date](#date)
+  - [LICENSE](#license)
+  - [Index](#index)
+  - [API](#api)
+    - [MavyGraphTraversal](#mavygraphtraversal)
+      - [int addPlace](#int-addplace)
+      - [int addPlace](#int-addplace-1)
+      - [int connect](#int-connect)
+      - [int connect](#int-connect-1)
+      - [void GBFS](#void-gbfs)
+    - [void Astar](#void-astar)
+    - [Node](#node)
+      - [int addNeighbor](#int-addneighbor)
+      - [String getName](#string-getname)
+      - [double getF](#double-getf)
+      - [double getG](#double-getg)
+      - [double getH](#double-geth)
+      - [void setF](#void-setf)
+      - [void setG](#void-setg)
+      - [void setH](#void-seth)
+      - [Node getParent](#node-getparent)
+      - [void setParent](#void-setparent)
+      - [boolean isVisited](#boolean-isvisited)
+      - [void setVisited](#void-setvisited)
+      - [LinkedList\<Edge\> getNeighbors](#linkedlistedge-getneighbors)
+      - [String getLabel](#string-getlabel)
+      - [boolean isNeighbor](#boolean-isneighbor)
+    - [Edge](#edge)
+      - [Node getNode](#node-getnode)
+      - [double getWeight](#double-getweight)
+  - [LICENSE](#license-1)
 
 ## API
 
 ### MavyGraphTraversal
 
-#### Constructor Summary
 ```java
 MavyGraphTraversal()
 ```
 
-#### Method Summary
-
-##### int addPlace
+#### int addPlace
 
 ```java
 public int addPlace(String place, double h)
@@ -73,7 +76,7 @@ Parameters:
 Returns:
 - `0` if successful, `-1` if not
 
-##### int addPlace
+#### int addPlace
 
 ```java
 public int addPlace(String place, String label, double h)
@@ -89,7 +92,7 @@ Parameters:
 Returns:
 - `0` if successful, `-1` if not
 
-##### int connect
+#### int connect
 
 ```java
 public int connect(int v1, int v2, double weight)
@@ -105,7 +108,7 @@ Parameters:
 Returns:
 - `0` if successful, `-1` if not
 
-##### int connect
+#### int connect
 
 ```java
 public int connect(int v1, int v2, double weight, boolean isUndirected)
@@ -122,7 +125,7 @@ Parameters:
 Returns:
 - `0` if successful, `-1` if not
 
-##### void GBFS
+#### void GBFS
 
 ```java
 public void GBFS(int startPlace, int goalPlace)
@@ -134,7 +137,7 @@ Parameters:
 - `startPlace` - starting place
 - `goalPlace` - goal place
 
-##### void Astar
+### void Astar
 
 ```java
 public void Astar(int startPlace, int goalPlace)
@@ -148,15 +151,12 @@ Parameters:
 
 ### Node
 
-#### Constructor Summary
 ```java
 Node(String name)
 Node(String name, String label) 
 ```
 
-#### Method Summary
-
-##### int addNeighbor
+#### int addNeighbor
 
 ```java
 public int addNeighbor(Node n, double weight)
@@ -171,73 +171,73 @@ Parameters:
 Returns:
 - `0` if successful, `-1` if not
 
-##### String getName
+#### String getName
 
 ```java
 public String getName()
 ```
 
-##### double getF
+#### double getF
 
 ```java
 public double getF()
 ```
 
-##### double getG
+#### double getG
 
 ```java
 public double getG()
 ```
 
-##### double getH
+#### double getH
 
 ```java
 public double getH()
 ```
 
-##### void setF
+#### void setF
 
 ```java
 public void setF(double f)
 ```
 
-##### void setG
+#### void setG
 
 ```java
 public void setG(double g)
 ```
 
-##### void setH
+#### void setH
 
 ```java
 public void setH(double h)
 ```
 
-##### Node getParent
+#### Node getParent
 
 ```java
 public double getParent()
 ```
 
-##### void setParent
+#### void setParent
 
 ```java
 public void setParent(Node parent)
 ```
 
-##### boolean isVisited
+#### boolean isVisited
 
 ```java
 public boolean isVisited()
 ```
 
-##### void setVisited
+#### void setVisited
 
 ```java
 public void setVisited(boolean visited)
 ```
 
-##### LinkedList\<Edge\> getNeighbors
+#### LinkedList\<Edge\> getNeighbors
 
 ```java
 public LinkedList<Edge> getNeighbors(boolean visited)
@@ -248,7 +248,7 @@ Get node's neighbors
 Returns:
 - list of places as nodes
 
-##### String getLabel
+#### String getLabel
 
 ```java
 public String getLabel()
@@ -259,7 +259,7 @@ Get place label
 Returns:
 - name if no label, otherwise return label
 
-##### boolean isNeighbor
+#### boolean isNeighbor
 
 ```java
 public boolean isNeighbor(Node n)
@@ -276,14 +276,11 @@ Returns:
 
 ### Edge
 
-#### Constructor Summary
 ```java
 Edge(Node n, double weight) 
 ```
 
-#### Method Summary
-
-##### Node getNode
+#### Node getNode
 
 ```java
 public Node getNode()
@@ -292,7 +289,7 @@ public Node getNode()
 Returns:
 - the node connected to this edge
 
-##### double getWeight
+#### double getWeight
 
 ```java
 public double getWeight()

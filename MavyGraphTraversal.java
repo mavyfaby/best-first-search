@@ -67,7 +67,7 @@ public class MavyGraphTraversal {
     }
 
     /**
-     * Connect 2 vertices with distance (Undirected)
+     * Connect 2 vertices with distance (with option to make it undirected)
      *
      * @param v1
      * @param v2
@@ -97,7 +97,7 @@ public class MavyGraphTraversal {
         // If is undirected
         if (isUndirected) {
             // If n1 is already a neighbor of n2
-            if (n2.isNeighbor(n1)) {
+            if (n2.isNeighbor(n1)) {    
                 // discard (will show message)
                 return -1;
             }
@@ -135,8 +135,8 @@ public class MavyGraphTraversal {
 
         // While open is not empty
         while (!open.isEmpty()) {
-            // Get the node w/ the lowest f(n) value
-            Node n = pollLowestF(open);
+            // Get and remove the node w/ the lowest f(n) value from open list
+            Node n = getLowestF(open);
             // Set n as visited
             n.setVisited(true);
 
@@ -154,14 +154,14 @@ public class MavyGraphTraversal {
 
             // For every edge (neighbor) of n
             for (Edge e : n.getNeighbors()) {
-                // Get node
+                // Get neighbor
                 Node m = e.getNode();
 
-                // If node is not visited
+                // If neighbor is not visited
                 if (!m.isVisited()) {
                     // Set f(m) = h(m)
                     m.setF(m.getH());
-                    // Set parent
+                    // Set n as parent of this neighbor
                     m.setParent(n);
                     // Add it to the open list
                     open.add(m);
@@ -201,8 +201,8 @@ public class MavyGraphTraversal {
 
         // While open list is not empty
         while (!open.isEmpty()) {
-            // Get the node w/ the lowest f(n) value
-            Node n = pollLowestF(open);
+            // Get and remove the node w/ the lowest f(n) value from open list
+            Node n = getLowestF(open);
 
             // If current node is the goalPlace
             if (n.getName().equalsIgnoreCase(gp.getName())) {
@@ -218,12 +218,12 @@ public class MavyGraphTraversal {
 
             // For every edge (neighbor) of n
             for (Edge e : n.getNeighbors()) {
-                // Get node
+                // Get neighbor
                 Node m = e.getNode();
                 // Get g(m) (current.g + m.weight)
                 double g = m.getG() + e.getWeight();
 
-                // If m is not in closed list AND m is not in open list
+                // If neighbor is not in closed list AND neighbor is not in open list
                 if (!isPlaceExist(open, m.getName()) && !isPlaceExist(closed, m.getName())) {
                     // Set g(m)
                     m.setG(g);
@@ -254,8 +254,10 @@ public class MavyGraphTraversal {
                 }
             }
 
-            // Move n from open list to close list
-            open.remove(n);
+            // No need to remove n from open list
+            // since it will remove automatically when getting the lowest f(n)
+
+            // Add n to the close list
             closed.add(n);
         }
 
@@ -290,12 +292,23 @@ public class MavyGraphTraversal {
     }
 
     /**
-     * Get the lowest f(n) value and remove it in the list
+     * Get the lowest f(n) value
      *
      * @param list
      * @return the node w/ the lowest f(n) value
      */
-    private Node pollLowestF(LinkedList<Node> list) {
+    private Node getLowestF(LinkedList<Node> list) {
+        return getLowestF(list, true);
+    }
+
+    /**
+     * Get the lowest f(n) value and add an option to remove it in the list
+     *
+     * @param list
+     * @param willRemoveFromList
+     * @return the node w/ the lowest f(n) value
+     */
+    private Node getLowestF(LinkedList<Node> list, boolean willRemoveFromList) {
         // Default lowest
         int lowest = 0;
 
@@ -308,10 +321,15 @@ public class MavyGraphTraversal {
             }
         }
 
-        // Get the node w/ the lowest heuristic value
+        // Get the node w/ the lowest f(n) value
         Node n = list.get(lowest);
-        // Remove lowest h value in the list
-        list.remove(lowest);
+
+        // If will remove from list
+        if (willRemoveFromList) {
+            // Remove lowest f(n) value in the list
+            list.remove(lowest);
+        }
+
         // Return the node
         return n;
     }
