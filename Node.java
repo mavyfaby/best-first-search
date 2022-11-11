@@ -113,7 +113,21 @@ public class Node {
      * @return name if no label, otherwise return label
      */
     public String getLabel() {
-        // If no label, return name
+        return getLabel(false);
+    }
+
+    /**
+     * Get place label w/ an option to make it strict (return the exact label not name)
+     * @param isStrict strict mode
+     * @return label if isStrict is true, otherwise return name if label is null, else return label
+     */
+    public String getLabel(boolean isStrict) {
+        // If strict
+        if (isStrict) {
+            return label;
+        }
+
+        // Otherwise is not strict and if no label, return name
         if (label == null) {
             return name;
         }

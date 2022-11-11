@@ -111,6 +111,50 @@ public class MavyGraphTraversal {
     }
 
     /**
+     * Display adjacency list of the graph
+     */
+    public void displayAdjacencyList() {
+        System.out.println("------------ Adjacency list ------------\n");
+
+        // For each node in the graph
+        for (Node node : graph) {
+            // Get its neighbors
+            LinkedList<Edge> neighbors = node.getNeighbors();
+            // Get label
+            String label = node.getLabel(true);
+
+            // If node has label
+            if (label != null) {
+                // Print label
+                System.out.print(label + " = ");
+            }
+
+            // Display its name
+            System.out.print(node.getName() + " :: [ ");
+
+            // For each neighbor using index
+            for (int i = 0; i < neighbors.size(); i++) {
+                // Get the neighbor
+                Edge neighbor = neighbors.get(i);
+
+                // Display its name
+                System.out.print(neighbor.getNode().getName());
+
+                // If not last neighbor
+                if (i != neighbors.size() - 1) {
+                    // Display comma
+                    System.out.print(", ");
+                }
+            }
+
+            // Display new line
+            System.out.println(" ]");
+        }
+
+        System.out.println();
+    }
+
+    /**
      * Do a Greedy-Best First Search to the Graph
      *
      * @param startPlace starting place
@@ -146,9 +190,8 @@ public class MavyGraphTraversal {
                 System.out.println("------- Greedy Best-First Search -------");
                 // Get path
                 LinkedList<Node> path = getPath(n);
-                // Display
+                // Display path
                 displayPath(path);
-                displayLabelWithName(path);
                 return;
             }
 
@@ -207,12 +250,11 @@ public class MavyGraphTraversal {
             // If current node is the goalPlace
             if (n.getName().equalsIgnoreCase(gp.getName())) {
                 // Found!
-                System.out.println("--------------- A* Search ---------------");
+                System.out.println("-------------- A* Search ---------------");
                 // Get path
                 LinkedList<Node> path = getPath(n);
-                // Display
+                // Display path
                 displayPath(path);
-                displayLabelWithName(path);
                 return;
             }
 
@@ -348,7 +390,10 @@ public class MavyGraphTraversal {
             System.out.print(path.get(i).getLabel() + (i == path.size() - 1 ? "" : " -> "));
         }
 
-        System.out.println(" ]\n");
+        System.out.println(" ]");
+
+        // Display label with name if node has labels
+        displayLabelWithName(path);
     }
 
     /**
@@ -357,6 +402,8 @@ public class MavyGraphTraversal {
      * @param path list of place as nodes
      */
     private void displayLabelWithName(LinkedList<Node> path) {
+        System.out.println();
+
         // For every place in path
         for (Node place : path) {
             // If place has label
@@ -366,7 +413,7 @@ public class MavyGraphTraversal {
             }
         }
 
-        System.out.println("");
+        System.out.println();
     }
 
 

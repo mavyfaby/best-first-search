@@ -60,7 +60,6 @@ public MavyGraphTraversal()
 - `boolean isPlaceExist(LinkedList<Node> list, String name)` - Check if place exist in the given list.
 - `boolean isOutOfRange(int index)` - Determine whether the given index is out of range.
 
-
 ### Node
 
 ```java
@@ -86,6 +85,7 @@ public Node(String name, String label)
 - `void setVisited(boolean visited)`
 - `LinkedList<Edge> getNeighbors(boolean visited)` - Get node's neighbors.
 - `String getLabel()` - Get place label.
+- `String getLabel(boolean isStrict)` - Get place label w/ an option to make it strict (return the exact label not name).
 - `boolean isNeighbor(Node n)` - Check if the node already exist in the list of neighbors.
 
 
@@ -93,7 +93,6 @@ public Node(String name, String label)
 
 ```java
 public Edge(Node n, double weight) 
-
 ```
 
 ### Methods
