@@ -249,8 +249,8 @@ public class MavyGraphTraversal {
 
             // If current node is the goalPlace
             if (n.getName().equalsIgnoreCase(gp.getName())) {
-                // Found!
-                System.out.println("-------------- A* Search ---------------");
+                System.out.println("-------------- A* Search ---------------\n");
+                System.out.println("Final f(n) = " + n.getF() + " km");
                 // Get path
                 LinkedList<Node> path = getPath(n);
                 // Display path
@@ -263,7 +263,7 @@ public class MavyGraphTraversal {
                 // Get neighbor
                 Node m = e.getNode();
                 // Get g(m) (current.g + m.weight)
-                double g = m.getG() + e.getWeight();
+                double g = n.getG() + e.getWeight();
 
                 // If neighbor is not in closed list AND neighbor is not in open list
                 if (!isPlaceExist(open, m.getName()) && !isPlaceExist(closed, m.getName())) {
@@ -347,10 +347,10 @@ public class MavyGraphTraversal {
      * Get the lowest f(n) value and add an option to remove it in the list
      *
      * @param list
-     * @param willRemoveFromList
+     * @param removeFromList
      * @return the node w/ the lowest f(n) value
      */
-    private Node getLowestF(LinkedList<Node> list, boolean willRemoveFromList) {
+    private Node getLowestF(LinkedList<Node> list, boolean removeFromList) {
         // Default lowest
         int lowest = 0;
 
@@ -366,8 +366,8 @@ public class MavyGraphTraversal {
         // Get the node w/ the lowest f(n) value
         Node n = list.get(lowest);
 
-        // If will remove from list
-        if (willRemoveFromList) {
+        // If remove from list
+        if (removeFromList) {
             // Remove lowest f(n) value in the list
             list.remove(lowest);
         }

@@ -26,8 +26,14 @@ permission of Maverick Fabroa <me@mavyfaby.me>.
   - [Index](#index)
   - [API](#api)
     - [MavyGraphTraversal](#mavygraphtraversal)
+    - [Methods](#methods)
+      - [public](#public)
+    - [private](#private)
     - [Node](#node)
+    - [Methods](#methods-1)
+      - [public](#public-1)
     - [Edge](#edge)
+    - [Methods](#methods-2)
   - [LICENSE](#license-1)
 
 ## API
